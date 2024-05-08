@@ -1,4 +1,25 @@
-const ImageCard = ({ photo, onSelect }) => {
+import { SelectedPhoto } from "../../App";
+
+interface ImageCardProps {
+  photo: Photo;
+  onSelect: (state: boolean, photo: SelectedPhoto) => void;
+}
+export interface Photo {
+  id: string;
+  alt_description: string;
+  likes: number;
+  urls: {
+    small: string;
+    regular: string;
+  };
+  user: {
+    total_likes: number;
+    name: string;
+    total_photos: number;
+  };
+}
+
+const ImageCard: React.FC<ImageCardProps> = ({ photo, onSelect }) => {
   return (
     <div>
       <div>

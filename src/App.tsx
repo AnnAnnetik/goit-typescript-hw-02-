@@ -1,37 +1,46 @@
-import './App.css';
-import SearchBar from './SearchBar/SearchBar';
-import { getPhotos } from './components/articles-api';
-import LoadMoreBtn from './LoadMoreBtn/LoadMoreBtn';
+import "./App.css";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
+import ImageGallery from "./components/ImageGallery/ImageGallery";
+import ImageModal from "./components/ImageModal/ImageModal";
+import Button from "./components/LoadMoreBtn/LoadMoreBtn";
+import Loader from "./components/Loader/Loader";
+import SearchBar from "./components/SearchBar/SearchBar";
 
-import Loader from './Loader/Loader';
-import ErrorMessage from './ErrorMessage/ErrorMessage';
-import { useEffect, useState } from 'react';
-import { ImageGallery } from './ImageGallery/ImageGallery';
-import ImageModal from './ImageModal/ImageModal';
+import { getPhotos } from "./components/articles-api";
+import { useEffect, useState } from "react";
 
-interface SelectedPhoto{
+export interface SelectedPhoto {
   src: string;
   description: string;
 }
+export interface ImageId {
+  id: string;
+  alt_description: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
+}
+
 function App() {
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState<ImageId[]>([]);
   const [isError, setIsError] = useState<boolean>(false);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedPhoto, setSelectedPhoto] = useState<SelectedPhoto>({
-    src: '',
-    description: '',
+    src: "",
+    description: "",
   });
 
-  function handleModal(state, photo = {}) {
+  function handleModal(state: boolean, photo: SelectedPhoto): void {
     setIsModalOpen(state);
     if (state) setSelectedPhoto(photo);
   }
 
-  const handleSearch = query => {
+  const handleSearch = (query: string) => {
     setQuery(query);
     setPage(1);
     setPhotos([]);
@@ -45,7 +54,7 @@ function App() {
         setIsLoading(true);
         const response = await getPhotos(query, page);
 
-        setPhotos(pre => [...pre, ...response.results]);
+        setPhotos((pre) => [...pre, ...response.results]);
         setTotalPages(response.total_pages);
       } catch (error) {
         setIsError(true);
@@ -57,7 +66,7 @@ function App() {
   }, [page, query]);
 
   const hendleClick = () => {
-    setPage(pre => pre + 1);
+    setPage((pre) => pre + 1);
   };
 
   return (
@@ -71,7 +80,7 @@ function App() {
         photo={selectedPhoto}
         onChange={handleModal}
       />
-      {totalPages > page && <LoadMoreBtn onClick={hendleClick}>Load more</LoadMoreBtn>}
+      {totalPages > page && <Button onClick={hendleClick}>Load more</Button>}
     </div>
   );
 }

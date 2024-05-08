@@ -1,8 +1,8 @@
-import css from './ImageModal.module.css';
-import Modal from 'react-modal';
+import css from "./ImageModal.module.css";
+import Modal from "react-modal";
 
 const ImageModal = ({ isOpen = false, photo, onChange }) => {
-  Modal.setAppElement(document.getElementById('root'));
+  Modal.setAppElement(document.getElementById("root"));
   return (
     <Modal
       className={css.modal}
