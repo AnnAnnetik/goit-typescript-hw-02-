@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  list-style-type: none;
+}
+
+.item {
+  width: 150px;
+  height: 110px;
+  flex-shrink: 0;
+  cursor: pointer;
+  font-size: 10px;
+}
