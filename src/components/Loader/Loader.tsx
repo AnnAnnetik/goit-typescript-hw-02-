@@ -1,5 +1,6 @@
 import { Hearts } from 'react-loader-spinner';
-const Loader = () => {
+import  { FC } from "react";
+const Loader: FC = () => {
   return (
     <div>
       <Hearts
@@ -16,3 +17,4 @@ const Loader = () => {
 };
 
 export default Loader;
+
