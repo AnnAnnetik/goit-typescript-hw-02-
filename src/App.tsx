@@ -16,15 +16,21 @@ export interface SelectedPhoto {
 export interface ImageId {
   id: string;
   alt_description: string;
+  likes: number;
   urls: {
     small: string;
     regular: string;
+  };
+  user: {
+    total_likes: number;
+    name: string;
+    total_photos: number;
   };
 }
 export type ResData = {
   total: number;
   total_pages: number;
-  results: ImageId[];
+  results: [];
 };
 function App() {
   const [query, setQuery] = useState<string>("");

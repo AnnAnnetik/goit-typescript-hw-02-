@@ -1,22 +1,8 @@
-import { SelectedPhoto } from "../../App";
+import { ImageId, SelectedPhoto } from "../../App";
 
 interface ImageCardProps {
-  photo: Photo;
+  photo: ImageId;
   onSelect: (state: boolean, photo: SelectedPhoto) => void;
-}
-export interface Photo {
-  id: string;
-  alt_description: string;
-  likes: number;
-  urls: {
-    small: string;
-    regular: string;
-  };
-  user: {
-    total_likes: number;
-    name: string;
-    total_photos: number;
-  };
 }
 
 const ImageCard: React.FC<ImageCardProps> = ({ photo, onSelect }) => {

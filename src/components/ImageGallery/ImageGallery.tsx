@@ -3,7 +3,7 @@ import ImageCard from "../ImageCard/ImageCard";
 import style from "./ImageGallery.module.css";
 
 export interface ImageGalleryProps {
-  photos: ImageId;
+  photos: ImageId[];
   onSelect: (state: boolean, photo: SelectedPhoto) => void;
 }
 export const ImageGallery: React.FC<ImageGalleryProps> = ({
