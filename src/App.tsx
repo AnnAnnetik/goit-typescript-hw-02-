@@ -21,7 +21,11 @@ export interface ImageId {
     regular: string;
   };
 }
-
+export type ResData = {
+  total: number;
+  total_pages: number;
+  results: ImageId[];
+};
 function App() {
   const [query, setQuery] = useState<string>("");
   const [page, setPage] = useState<number>(1);
@@ -49,10 +53,10 @@ function App() {
 
   useEffect(() => {
     if (!query) return;
-    const fetchPhotos = async () => {
+    const fetchPhotos = async (): Promise<void> => {
       try {
         setIsLoading(true);
-        const response = await getPhotos(query, page);
+        const response: ResData = await getPhotos(query, page);
 
         setPhotos((pre) => [...pre, ...response.results]);
         setTotalPages(response.total_pages);
@@ -80,7 +84,11 @@ function App() {
         photo={selectedPhoto}
         onChange={handleModal}
       />
-      {totalPages > page && <Button onClick={hendleClick} disabled={false}>Load more</Button>}
+      {totalPages > page && (
+        <Button onClick={hendleClick} disabled={false}>
+          Load more
+        </Button>
+      )}
     </div>
   );
 }
