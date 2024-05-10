@@ -10,8 +10,11 @@ interface ImageModalProps {
   onChange: (state: boolean, photo: SelectedPhoto) => void;
 }
 
-
-const ImageModal:FC<ImageModalProps> = ({ isOpen = false, photo, onChange }) => {
+const ImageModal: FC<ImageModalProps> = ({
+  isOpen = false,
+  photo,
+  onChange,
+}) => {
   Modal.setAppElement(document.getElementById("root") as HTMLElement);
   return (
     <Modal

@@ -1,15 +1,14 @@
 .list {
-  display: flex;
-  gap: 50px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
   list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 16px;
 }
 
 .item {
-  width: 150px;
-  height: 110px;
-  flex-shrink: 0;
-  cursor: pointer;
-  font-size: 10px;
+  flex: 1 1 calc(25% - 16px);
 }

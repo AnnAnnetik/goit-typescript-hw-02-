@@ -1,5 +1,5 @@
 import { ImageId, SelectedPhoto } from "../../App";
-
+import style from "./ImageCard.module.css";
 interface ImageCardProps {
   photo: ImageId;
   onSelect: (state: boolean, photo: SelectedPhoto) => void;
@@ -7,9 +7,10 @@ interface ImageCardProps {
 
 const ImageCard: React.FC<ImageCardProps> = ({ photo, onSelect }) => {
   return (
-    <div>
+    <div className={style.container}>
       <div>
         <img
+          className={style.image}
           src={photo.urls.small}
           alt={photo.alt_description}
           onClick={() =>
@@ -20,7 +21,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ photo, onSelect }) => {
           }
         />
       </div>
-      <h2>{photo.user.name}</h2>
+      <h2 className={style.title}>{photo.user.name}</h2>
       <p>Likes: {photo.likes}</p>
       <p>Total Likes: {photo.user.total_likes}</p>
       <p>Total Photos: {photo.user.total_photos}</p>
