@@ -1,13 +1,23 @@
+import { FC } from "react";
+import { SelectedPhoto } from "../../App";
 import css from "./ImageModal.module.css";
 import Modal from "react-modal";
 
-const ImageModal = ({ isOpen = false, photo, onChange }) => {
-  Modal.setAppElement(document.getElementById("root"));
+interface ImageModalProps {
+  isOpen: boolean;
+  photo: { src: string };
+
+  onChange: (state: boolean, photo: SelectedPhoto) => void;
+}
+
+
+const ImageModal:FC<ImageModalProps> = ({ isOpen = false, photo, onChange }) => {
+  Modal.setAppElement(document.getElementById("root") as HTMLElement);
   return (
     <Modal
       className={css.modal}
       isOpen={isOpen}
-      onRequestClose={() => onChange(false)}
+      onRequestClose={() => onChange}
       shouldCloseOnOverlayClick={true}
       shouldCloseOnEsc={true}
       preventScroll={true}

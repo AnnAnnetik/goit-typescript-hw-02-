@@ -1,11 +1,15 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, FC, ChangeEvent } from 'react';
 import style from './SearchBar.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 import { CiSearch } from 'react-icons/ci';
 
 const notify = () => toast('Search images and photos ❗');
 
-const SearchBar = ({ addImg }) => {
+interface SearchProps{
+  addImg: (query: string) => void;
+}
+
+const SearchBar : FC<SearchProps>= ({ addImg }) => {
   const [value, setValue] = useState('');
 
   const handleSubmit = (e:FormEvent<HTMLFormElement> )=> {
@@ -17,8 +21,8 @@ const SearchBar = ({ addImg }) => {
     setValue('');
   };
 
-  const handleOnChange = (event:FormEvent<HTMLFormElement>) => {
-    setValue(event.target.value);
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
   };
 
   return (

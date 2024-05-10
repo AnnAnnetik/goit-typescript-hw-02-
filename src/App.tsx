@@ -80,7 +80,7 @@ function App() {
         photo={selectedPhoto}
         onChange={handleModal}
       />
-      {totalPages > page && <Button onClick={hendleClick}>Load more</Button>}
+      {totalPages > page && <Button onClick={hendleClick} disabled={false}>Load more</Button>}
     </div>
   );
 }
