@@ -5,7 +5,7 @@ import Modal from "react-modal";
 
 interface ImageModalProps {
   isOpen: boolean;
-  photo: { src: string };
+  photo: SelectedPhoto;
 
   onChange: (state: boolean, photo: SelectedPhoto) => void;
 }
@@ -20,7 +20,7 @@ const ImageModal: FC<ImageModalProps> = ({
     <Modal
       className={css.modal}
       isOpen={isOpen}
-      onRequestClose={() => onChange}
+      onRequestClose={() => onChange(false, photo)}
       shouldCloseOnOverlayClick={true}
       shouldCloseOnEsc={true}
       preventScroll={true}

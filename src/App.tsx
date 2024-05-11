@@ -30,7 +30,7 @@ export interface ImageId {
 export type ResData = {
   total: number;
   total_pages: number;
-  results: [];
+  results: ImageId[];
 };
 function App() {
   const [query, setQuery] = useState<string>("");
